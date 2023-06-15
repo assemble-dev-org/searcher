@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "searcher"
+  annotations:
+    argocd/app-name: searcher-dev
+    backstage.io/kubernetes-id: searcher
+    backstage.io/kubernetes-namespace: searcher-dev
+    janus-idp.io/tekton-enabled : 'true'
+    github.com/project-slug: assemble-dev-org/searcher
+    quay.io/repository-slug: "jfroehli/searcher"
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://devspaces.apps.cluster-hx87f.hx87f.sandbox3154.opentlc.com/#https://github.com/assemble-dev-org/searcher?che-editor=che-incubator/che-code/insiders&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.cluster-hx87f.hx87f.sandbox3154.opentlc.com/#https://github.com/assemble-dev-org/searcher?che-editor=che-incubator/che-idea/latest&devfilePath=.devfile-intellij.yaml
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/jayfray12"
+  providesApis:
+    - "searcher"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "searcher"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user:default/jayfray12"
+  definition:
+    $text: ./openapi.yaml
